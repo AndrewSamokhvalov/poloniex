@@ -101,7 +101,7 @@ class PushApi:
 
     @property
     def is_subscribed(self):
-        [queue, subscriptions] = self.wamp.subsciptions
+        [queue, subscriptions] = self.wamp.subscriptions
         return len(queue) + len(subscriptions) != 0
 
     def subscribe(self, topic, handler):
