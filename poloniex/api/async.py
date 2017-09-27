@@ -47,9 +47,10 @@ def ticker_wrapper(handler):
 
 
 def trades_wrapper(topic, handler):
-    async def decorator(data):
-        for event in data:
+    async def decorator(event_args, event_kwargs):
+        for event in event_args:
             event["currency_pair"] = topic
+            event.update(event_kwargs)
 
             if inspect.isgeneratorfunction(handler):
                 await handler(**event)
